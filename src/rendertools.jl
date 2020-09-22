@@ -30,7 +30,7 @@ function render(render_window::RenderWindow,observation)
 	# if you want to see more than the last state you need to sleep for a few
 	sleep(1e-5)
 	# clear the stack of plots for memory purpose
-    empty!(render_window.scene.plots)
+    empty!(render_window.scene)
 end
 
 function save_frame(observation,resolution::Tuple{Int64,Int64},file_name::String;file_path="julia/img/",format=".png")
