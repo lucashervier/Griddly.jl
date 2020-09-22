@@ -66,9 +66,10 @@ end
 function add_frame!(video::VideoRecorder,io::VideoStream,observation;nice_render=false)
 	# observation is a 3d array with UInt8, we need to transform it into a rgb julia image
 	img = ImageCore.colorview(RGB{N0f8},observation)
-	# add the img to the scene
-	video.scene = image!(view(img, :, size(img)[2]:-1:1))
-	display(video.scene)
+	# # add the img to the scene
+	# video.scene = image!(view(img, :, size(img)[2]:-1:1))
+	# display(video.scene)
+	update!(image!(view(img, :, size(img)[2]:-1:1)))
 	if (nice_render)
 	    # if you want to see more than the last state you need to sleep for a few
 	    sleep(1e-4)
@@ -162,7 +163,8 @@ function render_multiple(screen::MultipleScreen,observations)
 		img = ImageCore.colorview(RGB{N0f8},observations[i])
 		image!(screen.subscenes[i],view(img, :, size(img)[2]:-1:1))
 	end
-    display(screen.scene)
+    # display(screen.scene)
+	update!(screen.scene)
     # if you want to see more than the last state you need to sleep for a few
     sleep(1e-4)
 	# empty the stack of the plots for memory purpose

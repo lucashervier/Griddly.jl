@@ -1,12 +1,10 @@
 using Griddly
 using Test
 using Makie
-# include("../src/Griddly.jl")
-# using BenchmarkTools
 
-image_path = joinpath(@__DIR__,"..","..","..","resources","images")
-shader_path = joinpath(@__DIR__,"..","..","..","resources","shaders")
-gdy_path = joinpath(@__DIR__,"..","..","..","resources","games")
+image_path = joinpath(@__DIR__,"..","..","resources","images")
+shader_path = joinpath(@__DIR__,"..","..","resources","shaders")
+gdy_path = joinpath(@__DIR__,"..","..","resources","games")
 
 @testset "Griddly" begin
 
@@ -58,6 +56,7 @@ gdy_path = joinpath(@__DIR__,"..","..","..","resources","games")
 			function run_window()
 		        for l in 0:4
 					render_window = RenderWindow(700,700)
+					display(render_window.scene)
 		            Griddly.load_level!(grid,l)
 		            Griddly.reset!(game)
 		            observation = Griddly.observe(game)
@@ -75,8 +74,9 @@ gdy_path = joinpath(@__DIR__,"..","..","..","resources","games")
 			end
 
 			function run_window_player()
-		        render_window_player = RenderWindow(700,700)
 		        for l in 0:4
+					render_window_player = RenderWindow(700,700)
+					display(render_window.scene)
 		            Griddly.load_level!(grid,l)
 		            Griddly.reset!(game)
 		            for j in 1:1000
@@ -94,7 +94,8 @@ gdy_path = joinpath(@__DIR__,"..","..","..","resources","games")
 	        # test if we can capture video
 			function run_video()
 				video = VideoRecorder((700,700),"test_video2";saving_path="julia/Griddly/test/")
-		        io = start(video)
+				display(video.scene)
+		        io = start_video(video)
 		        Griddly.load_level!(grid,4)
 		        Griddly.reset!(game)
 		        observation = Griddly.observe(game)
@@ -116,6 +117,7 @@ gdy_path = joinpath(@__DIR__,"..","..","..","resources","games")
 				Griddly.load_level!(grid,3)
 				Griddly.reset!(game)
 				screen = MultipleScreen(1000,1000;nb_scene=5)
+				display(screen.scene)
 				for j in 1:200
 					dir = rand(0:5)
 
@@ -424,6 +426,7 @@ gdy_path = joinpath(@__DIR__,"..","..","..","resources","games")
 				Griddly.load_level!(grid,1)
 				Griddly.reset!(game)
 				screen = MultipleScreen(1000,1000;nb_scene=3)
+				display(screen.scene)
 				for j in 1:1000
 					x = rand(1:Griddly.get_width(grid))
 					y = rand(1:Griddly.get_height(grid))
