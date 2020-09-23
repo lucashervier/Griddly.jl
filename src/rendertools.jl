@@ -7,26 +7,31 @@ end
 
 function RenderWindow(width::Int, height::Int)
 	scene = Scene(resolution=(width,height),show_axis=false)
+	display(scene)
 	RenderWindow(scene,width,height,true)
 end
 
-function render(render_window::RenderWindow,observation)
+function render(render_window::RenderWindow,observation;nice_render=false)
 	if (!render_window.initialized)
 		throw("Render Window is not initialized")
 	end
 
 	# observation is a 3d array with UInt8, we need to transform it into a rgb julia image
 	img = ImageCore.colorview(RGB{N0f8},observation)
-	# # add the image to scene
-	# render_window.scene = image!(view(img, :, size(img)[2]:-1:1))
-    # display(render_window.scene)
 
-	# add the image to scene
-	update!(image!(view(img, :, size(img)[2]:-1:1)))
+	if nice_render
+		# add the image to scene
+		update!(image!(view(img, :, size(img)[2]:-1:1)))
+	else
+		# add the image to scene
+		render_window.scene = image!(view(img, :, size(img)[2]:-1:1))
+	    display(render_window.scene)
+	end
+
 	# if you want to see more than the last state you need to sleep for a few
 	sleep(1e-5)
 	# clear the stack of plots for memory purpose
-    empty!(render_window.scene.plots)
+    pop!(render_window.scene.plots)
 end
 
 function save_frame(observation,resolution::Tuple{Int64,Int64},file_name::String;file_path="julia/img/",format=".png")
@@ -50,10 +55,12 @@ end
 
 function VideoRecorder(resolution::Tuple{Int64,Int64},file_name::String; fps=30 ,format=".mp4", saving_path="videos/")
 	scene = Scene(resolution=resolution,show_axis=false)
+	display(scene)
 	VideoRecorder(scene,fps,format,file_name,saving_path)
 end
 
 function VideoRecorder(scene::SceneLike,file_name::String; fps=30 ,format=".mp4", saving_path="videos/")
+	display(scene)
 	VideoRecorder(scene,fps,format,file_name,saving_path)
 end
 
@@ -63,17 +70,26 @@ function start_video(video::VideoRecorder)
 end
 
 # Add the observation as a frame for our video
-function add_frame!(video::VideoRecorder,io::VideoStream,observation;nice_render=false)
+function add_frame!(video::VideoRecorder,io::VideoStream,observation;nice_display=false,fast_display=false)
 	# observation is a 3d array with UInt8, we need to transform it into a rgb julia image
 	img = ImageCore.colorview(RGB{N0f8},observation)
-	# # add the img to the scene
-	# video.scene = image!(view(img, :, size(img)[2]:-1:1))
-	# display(video.scene)
-	update!(image!(view(img, :, size(img)[2]:-1:1)))
-	if (nice_render)
+
+	if nice_display
+		# add the img to the scene
+		update!(image!(view(img, :, size(img)[2]:-1:1)))
 	    # if you want to see more than the last state you need to sleep for a few
 	    sleep(1e-4)
+	elseif fast_display
+		# add the img to the scene
+		video.scene = image!(view(img, :, size(img)[2]:-1:1))
+		display(video.scene)
+		# if you want to see more than the last state you need to sleep for a few
+	    sleep(1e-4)
+	else
+		# add the img to the scene
+		video.scene = image!(view(img, :, size(img)[2]:-1:1))
 	end
+
 	# add the current frame to io
 	recordframe!(io)
 	# clear the stack of plots for memory purpose
@@ -151,10 +167,11 @@ function MultipleScreen(width,height;nb_scene=2)
 			end
 		end
 	end
+	display(scene)
 	return MultipleScreen(scene,width,height,nb_scene,subscenes)
 end
 
-function render_multiple(screen::MultipleScreen,observations)
+function render_multiple(screen::MultipleScreen,observations;nice_render=false)
 	if screen.nb_scene < length(observations)
 		throw("You want to display more observations than you have available scene \n Initialize a MultipleScreen with more Scene")
 	end
@@ -163,8 +180,12 @@ function render_multiple(screen::MultipleScreen,observations)
 		img = ImageCore.colorview(RGB{N0f8},observations[i])
 		image!(screen.subscenes[i],view(img, :, size(img)[2]:-1:1))
 	end
-    # display(screen.scene)
-	update!(screen.scene)
+
+	if nice_render
+		update!(screen.scene)
+	else
+		display(screen.scene)
+	end
     # if you want to see more than the last state you need to sleep for a few
     sleep(1e-4)
 	# empty the stack of the plots for memory purpose
