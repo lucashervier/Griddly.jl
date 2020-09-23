@@ -21,7 +21,7 @@ function render(render_window::RenderWindow,observation;nice_render=false)
 
 	if nice_render
 		# add the image to scene
-		update!(image!(view(img, :, size(img)[2]:-1:1)))
+		update_cam!(image!(view(img, :, size(img)[2]:-1:1)))
 	else
 		# add the image to scene
 		render_window.scene = image!(view(img, :, size(img)[2]:-1:1))
@@ -76,7 +76,7 @@ function add_frame!(video::VideoRecorder,io::VideoStream,observation;nice_displa
 
 	if nice_display
 		# add the img to the scene
-		update!(image!(view(img, :, size(img)[2]:-1:1)))
+		update_cam!(image!(view(img, :, size(img)[2]:-1:1)))
 	    # if you want to see more than the last state you need to sleep for a few
 	    sleep(1e-4)
 	elseif fast_display
@@ -182,7 +182,7 @@ function render_multiple(screen::MultipleScreen,observations;nice_render=false)
 	end
 
 	if nice_render
-		update!(screen.scene)
+		update_cam!(screen.scene)
 	else
 		display(screen.scene)
 	end
