@@ -70,7 +70,7 @@ function start_video(video::VideoRecorder)
 end
 
 # Add the observation as a frame for our video
-function add_frame!(video::VideoRecorder,io::VideoStream,observation;nice_display=false,fast_display=false)
+function add_frame!(video::VideoRecorder,io::VideoStream,observation;speed=1e-4,nice_display=false,fast_display=false)
 	# observation is a 3d array with UInt8, we need to transform it into a rgb julia image
 	img = ImageCore.colorview(RGB{N0f8},observation)
 
@@ -78,13 +78,13 @@ function add_frame!(video::VideoRecorder,io::VideoStream,observation;nice_displa
 		# add the img to the scene
 		update_cam!(image!(view(img, :, size(img)[2]:-1:1)))
 	    # if you want to see more than the last state you need to sleep for a few
-	    sleep(1e-4)
+	    sleep(speed)
 	elseif fast_display
 		# add the img to the scene
 		video.scene = image!(view(img, :, size(img)[2]:-1:1))
 		display(video.scene)
 		# if you want to see more than the last state you need to sleep for a few
-	    sleep(1e-4)
+	    sleep(speed)
 	else
 		# add the img to the scene
 		video.scene = image!(view(img, :, size(img)[2]:-1:1))
