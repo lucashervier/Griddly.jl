@@ -1,2 +1,0 @@
-# Multi-Player Game
-## TODO

@@ -1,2 +1,0 @@
-# MiniDroggo
-## TODO

@@ -1,2 +1,0 @@
-# Sokoban
-## TODO

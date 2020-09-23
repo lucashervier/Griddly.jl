@@ -1,5 +1,5 @@
 # Griddly.jl
-*A documentation for the Julia wrapper of* [**Griddly**](https://github.com/Bam4d/Griddly)
+*A documentation for the Julia wrapper of [__Griddly__](https://github.com/Bam4d/Griddly)*
 
 !!! note
     This documentation doesn't aim to explain what is Griddly, for that please
@@ -11,6 +11,7 @@
 
 ```@contents
 Pages = ["installation.md"]
+Depth = 1
 ```
 
 ## Library Outline
@@ -24,6 +25,7 @@ Pages = [
     "lib/render_tool.md",
     "lib/utils.md"
 ]
+Depth=1
 ```
 
 ## Examples
