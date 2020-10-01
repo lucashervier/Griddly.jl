@@ -192,7 +192,7 @@ end
 
 """
 	MultipleScreen(width,height;nb_scene=2)
-Instantiate a screen of size (width,height) divided into nb\_scene. The allocations of
+Instantiate a screen of size (width,height) divided into nb_scene. The allocations of
 the different position and size of subscreens is automatic.
 """
 function MultipleScreen(width,height;nb_scene=2)
