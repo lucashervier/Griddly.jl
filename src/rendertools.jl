@@ -2,11 +2,6 @@
 	RenderWindow
 Main Structure to render the observation of a single game. It will open a Makie
 window in which your observations will be display.
-:::warning
-For some reason, when you render a certain amount of observations the rendering
-will slow down. We recommand to open a new RenderWindow for every episode you play.
-We still work for a better solutions
-:::
 """
 mutable struct RenderWindow
 	scene::SceneLike
@@ -57,6 +52,7 @@ end
 """
 	save_frame(observation,resolution::Tuple{Int64,Int64},file_name::String;file_path="julia/img/",format=".png")
 If you want to save a specific observation without rendering all the steps of an episode and without creating a RenderWindow.
+
 __Supported Format__: .png, .jpeg, and .bmp
 """
 function save_frame(observation,resolution::Tuple{Int64,Int64},file_name::String;file_path="julia/img/",format=".png")
@@ -85,6 +81,7 @@ julia> video = VideoRecorder((700,700),"test_video";saving_path="videos/expl/"
 julia> io = start_video(video)
 
 julia> save_frame(video.scene,"blank";file_path="expl/img",format=".jpeg")
+```
 """
 function save_frame(scene::SceneLike,file_name::String;file_path="julia/img/",format=".png")
 	Makie.save("$file_path$file_name$format",scene)
@@ -95,10 +92,6 @@ end
 This Structure will help you to capture a video of your experiments. It will also
 render but if you are just looking to render observations then you should use a
 RenderWindow since it will be faster.
-:::warning
-Saving videos is a slow process. It could be optimized but at present we did not
-find a way.
-:::
 """
 mutable struct VideoRecorder
 	scene::SceneLike
@@ -111,7 +104,8 @@ end
 """
 	VideoRecorder(resolution::Tuple{Int64,Int64},file_name::String; fps=30 ,format=".mp4", saving_path="videos/")
 This function will create the scene and set all the parameters you need to save a video.
-Available Format are: .mkv,.mp4,.webm,.gif
+
+__Available Format__ are: .mkv,.mp4,.webm,.gif
 """
 function VideoRecorder(resolution::Tuple{Int64,Int64},file_name::String; fps=30 ,format=".mp4", saving_path="videos/")
 	scene = Scene(resolution=resolution,show_axis=false)
@@ -122,7 +116,8 @@ end
 """
 	VideoRecorder(scene::SceneLike,file_name::String; fps=30 ,format=".mp4", saving_path="videos/")
 This function will create the video recorder from an existing scene and set all the parameters you need to save a video.
-Available Format are: .mkv,.mp4,.webm,.gif
+
+__Available Format__ are: .mkv,.mp4,.webm,.gif
 """
 function VideoRecorder(scene::SceneLike,file_name::String; fps=30 ,format=".mp4", saving_path="videos/")
 	display(scene)
@@ -139,8 +134,8 @@ end
 
 """
 	add_frame!(video::VideoRecorder,io::VideoStream,observation;speed=1e-4,nice_display=false,fast_display=false)
-Add the observation as a frame for our video. The nice_display set to true will render without a loading wheel
-while recording. The fast_display set to true (both cannot be set to true or this one will be ignore) will render
+Add the observation as a frame for our video. The nice display option set to true will render without a loading wheel
+while recording. The fast display option set to true (both cannot be set to true or this one will be ignore) will render
 faster but you will see a loading wheel (but not in the final video)
 """
 function add_frame!(video::VideoRecorder,io::VideoStream,observation;speed=1e-4,nice_display=false,fast_display=false)
@@ -261,7 +256,7 @@ end
 	render_multiple(screen::MultipleScreen,observations;nice_render=false)
 The observations input is an array of the different observation you want to render on the same screen.
 Provide this array always in the same order if you want to keep one's observation on the same subscreen.
-If you set nice_render to true you will make disappear the loading wheel but it would be slower.
+If you set nice render option to true you will make disappear the loading wheel but it would be slower.
 """
 function render_multiple(screen::MultipleScreen,observations;nice_render=false)
 	if screen.nb_scene < length(observations)

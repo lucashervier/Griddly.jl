@@ -1,4 +1,5 @@
 using Griddly
+using Makie
 using Documenter: deploydocs, makedocs
 
 makedocs(sitename = "Griddly.jl", modules = [Griddly], doctest = false,

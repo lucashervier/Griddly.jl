@@ -8,6 +8,12 @@ RenderWindow
 RenderWindow(width::Int,height::Int)
 render(render_window::RenderWindow,observation;nice_render=false)
 ```
+!!! warning
+    For some reason, when you render a certain amount of observations the rendering
+    will slow down. We recommand to open a new RenderWindow for every episode you play.
+    We still work for a better solutions
+
+
 ### Example of use
 First we initialize a Sokoban grid and game.
 ```jldoctest
@@ -71,6 +77,10 @@ start_video(video::VideoRecorder)
 add_frame!(video::VideoRecorder,io::VideoStream,observation;speed=1e-4,nice_display=false,fast_display=false)
 save_video(video::VideoRecorder,io::VideoStream)
 ```
+!!! warning
+    Saving videos is a slow process. It could be optimized but at present we did not
+    find a way.
+
 ### How to use
 Assuming that you run the configuration in the RenderTool example, here is an
 example of how to record a random play on Sokoban
