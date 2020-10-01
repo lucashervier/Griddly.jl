@@ -1,3 +1,7 @@
+"""
+	RenderWindow
+Main Structure to render the observation of a single game
+"""
 mutable struct RenderWindow
 	scene::SceneLike
 	width::Int
@@ -5,12 +9,20 @@ mutable struct RenderWindow
 	initialized::Bool
 end
 
+"""
+	RenderWindow(width::Int,height::Int)
+Create a window with a resolution size of (width,height)
+"""
 function RenderWindow(width::Int, height::Int)
 	scene = Scene(resolution=(width,height),show_axis=false)
 	display(scene)
 	RenderWindow(scene,width,height,true)
 end
 
+"""
+	render(::RenderWindow,observation;::Bool)
+Display to your open window the observations given as inputs
+"""
 function render(render_window::RenderWindow,observation;nice_render=false)
 	if (!render_window.initialized)
 		throw("Render Window is not initialized")
