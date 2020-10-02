@@ -1,6 +1,6 @@
 """
-    Griddly.load!(gdy_reader::Griddly.GDYReader,path_yaml_file::String)
-The output of this function is the corresponding grid of your yaml file. The
+    Griddly.load!(gdy_reader::GDYReader,path_yaml_file::String)
+The output of this function is the corresponding grid of your GDY file. The
 GDYReader will also link the images and shaders ressources to the objects in your
 grid.
 
@@ -21,9 +21,9 @@ julia> grid = Griddly.load!(gdy_reader,joinpath(gdy_path,"Single-Player/GVGAI/so
 Griddly.load!
 
 """
-    Griddly.load_string!(gdy_reader::Griddly.GDYReader,gdy_string::String)
+    Griddly.load_string!(gdy_reader::GDYReader,gdy_string::String)
 Same as Griddly.load!() except that instead of providing the path to your game
-yaml file you can give as input the corresponding string
+GDY file you can give as input the corresponding string
 """
 Griddly.load_string!
 
@@ -115,6 +115,126 @@ Griddly.vector_obs
 
 """
     Griddly.create_game(grid,observer::ObserverType)
-Will instantiate a game from the grid and define the observer type.
+Will instantiate a game from a grid and define the observer type.
+```jldoctest
+julia> game = Griddly.create_game(grid,Griddly.SPRITE_2D)
+```
 """
 Griddly.create_game
+
+"""
+    Griddly.register_player!(game,player_name,observer_type)
+This function will create and register a player in the current game. Especially,
+a player can get his own __ObserverType__. Moreover, the player only got a partial
+observation of the grid.
+```jldoctest
+julia> player = Griddly.register_player!(game,"Tux",Griddly.BLOCK_2D)
+```
+"""
+Griddly.register_player!
+
+"""
+    Griddly.get_num_players(game)
+This will get you the number of player registered for your game instance
+"""
+Griddly.get_num_players
+
+"""
+    Griddly.init!(game)
+Will initialize the game, connect the dot with the grid which you created
+your game from, it also configure both game observer(global observer) and
+all players observer (partial observer).
+"""
+Griddly.init!
+
+"""
+    Griddly.reset!(game)
+Will reset the grid to the initial configuration of the last level you loaded in.
+Will also reset positions and parameters of all the observers.
+"""
+Griddly.reset!
+
+"""
+    Griddly.observe(game)
+Will return a NumpyWrapper object of, depending on your __ObserverType__, representing the current state of the grid.
+If you want to get the data of those observation you can use: Griddly.get_data(observation). If you only want to get the shape
+of your observations you can use: Griddly.get_shape(observation). The shape will depends on your __ObserverType__.
+
+Example:
+```jldoctest
+julia> using Griddly
+
+julia> image_path = joinpath(@__DIR__,"..","resources","images");
+
+julia> shader_path = joinpath(@__DIR__,"..","resources","shaders");
+
+julia> gdy_path = joinpath(@__DIR__,"..","resources","games");
+
+julia> gdy_reader = Griddly.GDYReader(image_path,shader_path);
+
+julia> grid = Griddly.load!(gdy_reader,joinpath(gdy_path,"Single-Player/GVGAI/sokoban.yaml"))
+
+julia> game = Griddly.create_game(grid,Griddly.SPRITE_2D)
+
+julia> player1 = Griddly.register_player!(game,"Tux", Griddly.BLOCK_2D)
+
+julia> Griddly.init!(game)
+
+julia> Griddly.load_level!(grid,1)
+
+julia> Griddly.reset!(game)
+
+julia> initial_sprites = convert(Array{Int,3},Griddly.get_data(Griddly.observe(game))))
+```
+"""
+Griddly.observe_game
+
+"""
+    Griddly.step_player!(player,action_name,[actions_array])
+This will make your player perform the action defined by action name with the ids
+of actions array. For instance, let's say you want your player to move to the LEFT
+and then UP you will do:
+```jldoctest
+julia> Griddly.step_player!(player1,"move",[1 2])
+```
+Indeed, the 1st id of "move" is LEFT and 2 is UP.
+"""
+Griddly.step_player!
+
+"""
+    Griddly.observe(player)
+Will return a NumpyWrapper object of, depending on the __ObserverType__ you
+attached to your player, representing partially (from player point of view) the
+current state of the grid. If you want to get the data of those observation you
+can use: Griddly.get_data(observation).If you only want to get the shape of your
+observations you can use: Griddly.get_shape(observation). The shape will depends
+on your __ObserverType__.
+
+Example:
+```jldoctest
+julia> using Griddly
+
+julia> image_path = joinpath(@__DIR__,"..","resources","images");
+
+julia> shader_path = joinpath(@__DIR__,"..","resources","shaders");
+
+julia> gdy_path = joinpath(@__DIR__,"..","resources","games");
+
+julia> gdy_reader = Griddly.GDYReader(image_path,shader_path);
+
+julia> grid = Griddly.load!(gdy_reader,joinpath(gdy_path,"Single-Player/GVGAI/sokoban.yaml"))
+
+julia> game = Griddly.create_game(grid,Griddly.SPRITE_2D)
+
+julia> player1 = Griddly.register_player!(game,"Tux", Griddly.BLOCK_2D)
+
+julia> Griddly.init!(game)
+
+julia> Griddly.load_level!(grid,1)
+
+julia> Griddly.reset!(game)
+
+julia> initial_player_tiles = convert(Array{Int,3},Griddly.get_data(Griddly.observe(player1))))
+```
+"""
+Griddly.observe_player
