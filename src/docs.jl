@@ -187,7 +187,7 @@ julia> Griddly.reset!(game)
 julia> initial_sprites = convert(Array{Int,3},Griddly.get_data(Griddly.observe(game))))
 ```
 """
-Griddly.observe
+Griddly.observe(game)
 
 """
     Griddly.step_player!(player,action_name,[actions_array])
@@ -237,4 +237,4 @@ julia> Griddly.reset!(game)
 julia> initial_player_tiles = convert(Array{Int,3},Griddly.get_data(Griddly.observe(player1))))
 ```
 """
-Griddly.observe
+Griddly.observe(player)
