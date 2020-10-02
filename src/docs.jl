@@ -157,8 +157,8 @@ Griddly.reset!
 """
     Griddly.observe(game)
 Will return a NumpyWrapper object of, depending on your __ObserverType__, representing the current state of the grid.
-If you want to get the data of those observation you can use: Griddly.get_data(observation). If you only want to get the shape
-of your observations you can use: Griddly.get_shape(observation). The shape will depends on your __ObserverType__.
+If you want to get the data of those observation you can use: `Griddly.get\_data(observation)`. If you only want to get the shape
+of your observations you can use: `Griddly.get\_shape(observation)`. The shape will depends on your __ObserverType__.
 
 Example:
 ```jldoctest
@@ -202,12 +202,12 @@ Indeed, the 1st id of "move" is LEFT and 2 is UP.
 Griddly.step_player!
 
 """
-    Griddly.observe(player)(@ref Griddly.observe_player)
+    Griddly.observe(player)
 Will return a NumpyWrapper object of, depending on the __ObserverType__ you
 attached to your player, representing partially (from player point of view) the
 current state of the grid. If you want to get the data of those observation you
-can use: Griddly.get_data(observation).If you only want to get the shape of your
-observations you can use: Griddly.get_shape(observation). The shape will depends
+can use: `Griddly.get\_data(observation)`.If you only want to get the shape of your
+observations you can use: `Griddly.get\_shape(observation)`. The shape will depends
 on your __ObserverType__.
 
 Example:
