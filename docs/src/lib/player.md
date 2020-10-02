@@ -6,7 +6,7 @@ required by the corresponding grid.
 
 ## Functions
 ```@docs
-Griddly.register_player!
+['Griddly.register_player!'](@ref)
 Griddly.step_player!
 Griddly.observe_player
 ```

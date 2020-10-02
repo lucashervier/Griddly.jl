@@ -5,7 +5,7 @@ It is also that object that will get your observer data.
 ## Functions
 ```@docs
 Griddly.create_game
-Griddly.register_player!
+['Griddly.register_player!'](@ref)
 Griddly.get_num_players
 Griddly.init!
 Griddly.reset!

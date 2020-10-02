@@ -120,7 +120,7 @@ Will instantiate a game from a grid and define the observer type.
 julia> game = Griddly.create_game(grid,Griddly.SPRITE_2D)
 ```
 """
-[Griddly.create_game](@ref Griddly.create_game)
+Griddly.create_game
 
 """
     Griddly.register_player!(game,player_name,observer_type)
@@ -131,7 +131,7 @@ observation of the grid.
 julia> player = Griddly.register_player!(game,"Tux",Griddly.BLOCK_2D)
 ```
 """
-[Griddly.register_player!](@ref Griddly.register_player!)
+Griddly.register_player!
 
 """
     Griddly.get_num_players(game)
@@ -155,7 +155,7 @@ Will also reset positions and parameters of all the observers.
 Griddly.reset!
 
 """
-    Griddly.observe(game)
+    Griddly.observe(game)(@ref Griddly.observe_game)
 Will return a NumpyWrapper object of, depending on your __ObserverType__, representing the current state of the grid.
 If you want to get the data of those observation you can use: Griddly.get_data(observation). If you only want to get the shape
 of your observations you can use: Griddly.get_shape(observation). The shape will depends on your __ObserverType__.
@@ -187,7 +187,7 @@ julia> Griddly.reset!(game)
 julia> initial_sprites = convert(Array{Int,3},Griddly.get_data(Griddly.observe(game))))
 ```
 """
-[Griddly.observe](@ref Griddly.observe_game)
+Griddly.observe
 
 """
     Griddly.step_player!(player,action_name,[actions_array])
@@ -202,7 +202,7 @@ Indeed, the 1st id of "move" is LEFT and 2 is UP.
 Griddly.step_player!
 
 """
-    Griddly.observe(player)
+    Griddly.observe(player)(@ref Griddly.observe_player)
 Will return a NumpyWrapper object of, depending on the __ObserverType__ you
 attached to your player, representing partially (from player point of view) the
 current state of the grid. If you want to get the data of those observation you
@@ -237,4 +237,4 @@ julia> Griddly.reset!(game)
 julia> initial_player_tiles = convert(Array{Int,3},Griddly.get_data(Griddly.observe(player1))))
 ```
 """
-[Griddly.observe](@ref Griddly.observe_player)
+Griddly.observe
