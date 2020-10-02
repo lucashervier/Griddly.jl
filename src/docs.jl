@@ -120,7 +120,7 @@ Will instantiate a game from a grid and define the observer type.
 julia> game = Griddly.create_game(grid,Griddly.SPRITE_2D)
 ```
 """
-Griddly.create_game
+[Griddly.create_game](@ref Griddly.create_game)
 
 """
     Griddly.register_player!(game,player_name,observer_type)
@@ -131,7 +131,7 @@ observation of the grid.
 julia> player = Griddly.register_player!(game,"Tux",Griddly.BLOCK_2D)
 ```
 """
-Griddly.register_player!
+[Griddly.register_player!](@ref Griddly.register_player!)
 
 """
     Griddly.get_num_players(game)
@@ -187,7 +187,7 @@ julia> Griddly.reset!(game)
 julia> initial_sprites = convert(Array{Int,3},Griddly.get_data(Griddly.observe(game))))
 ```
 """
-Griddly.observe_game
+[Griddly.observe](@ref Griddly.observe_game)
 
 """
     Griddly.step_player!(player,action_name,[actions_array])
@@ -237,4 +237,4 @@ julia> Griddly.reset!(game)
 julia> initial_player_tiles = convert(Array{Int,3},Griddly.get_data(Griddly.observe(player1))))
 ```
 """
-Griddly.observe_player
+[Griddly.observe](@ref Griddly.observe_player)
