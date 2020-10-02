@@ -9,7 +9,7 @@ Griddly.register_player!
 Griddly.get_num_players
 Griddly.init!
 Griddly.reset!
-Griddly.observe(game)
+Griddly.observe(::game)
 ```
 ## More example
 ```@contents

@@ -8,7 +8,7 @@ required by the corresponding grid.
 To know how to create a player please refer to [`Griddly.register_player!`](@ref)
 ```@docs
 Griddly.step_player!
-Griddly.observe(player)
+Griddly.observe(::player)
 ```
 
 ## More example
