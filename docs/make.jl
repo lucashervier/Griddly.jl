@@ -11,7 +11,6 @@ pages = [
             "Game Process" => "lib/game_process.md",
             "Player" => "lib/player.md",
             "Render Tools" => "lib/render_tool.md",
-            "Utils" => "lib/utils.md",
         ],
         "Examples" => Any[
             "Minidroggo" => "examples/minidroggo.md",

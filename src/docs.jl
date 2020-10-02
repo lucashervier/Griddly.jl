@@ -1,5 +1,5 @@
 """
-    Griddly.load!(gdy_reader::GDYReader,path_yaml_file::String)
+    Griddly.load!(gdy_reader::Griddly.GDYReader,path_yaml_file::String)
 The output of this function is the corresponding grid of your yaml file. The
 GDYReader will also link the images and shaders ressources to the objects in your
 grid.
@@ -21,7 +21,7 @@ julia> grid = Griddly.load!(gdy_reader,joinpath(gdy_path,"Single-Player/GVGAI/so
 Griddly.load!
 
 """
-    Griddly.load_string!(gdy_reader::GDYReader,gdy_string::String)
+    Griddly.load_string!(gdy_reader::Griddly.GDYReader,gdy_string::String)
 Same as Griddly.load!() except that instead of providing the path to your game
 yaml file you can give as input the corresponding string
 """
