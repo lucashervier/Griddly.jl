@@ -237,4 +237,4 @@ julia> Griddly.reset!(game)
 julia> initial_player_tiles = convert(Array{Int,3},Griddly.get_data(Griddly.observe(player1))))
 ```
 """
-Griddly.observe(::Gridly.Player)
+Griddly.observe(::Griddly.Player)
