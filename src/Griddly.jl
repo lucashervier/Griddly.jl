@@ -7,7 +7,7 @@ module Griddly
     function __init__()
    		@initcxx
     end
-
+	include("docs.jl")
 	include("utils.jl")
     ######################################## RenderTool ########################################
     using Makie

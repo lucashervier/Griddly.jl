@@ -23,7 +23,6 @@ Pages = [
     "lib/game_process.md",
     "lib/player.md",
     "lib/render_tool.md",
-    "lib/utils.md"
 ]
 Depth=1
 ```
