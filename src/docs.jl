@@ -155,7 +155,7 @@ Will also reset positions and parameters of all the observers.
 Griddly.reset!
 
 """
-    Griddly.observe(game)(@ref Griddly.observe_game)
+    Griddly.observe(game)
 Will return a NumpyWrapper object of, depending on your __ObserverType__, representing the current state of the grid.
 If you want to get the data of those observation you can use: Griddly.get_data(observation). If you only want to get the shape
 of your observations you can use: Griddly.get_shape(observation). The shape will depends on your __ObserverType__.

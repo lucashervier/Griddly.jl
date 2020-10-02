@@ -5,10 +5,10 @@ The number of player you register to a game should match the number of player
 required by the corresponding grid.
 
 ## Functions
+To know how to create a player please refer to [`Griddly.register_player!`](@ref)
 ```@docs
-['Griddly.register_player!'](@ref)
 Griddly.step_player!
-Griddly.observe_player
+Griddly.observe(player)
 ```
 
 ## More example
