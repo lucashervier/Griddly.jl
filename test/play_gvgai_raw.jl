@@ -1,15 +1,15 @@
 using Griddly
 
-image_path = joinpath(@__DIR__,"..","..","..","resources","images")
-shader_path = joinpath(@__DIR__,"..","..","..","resources","shaders")
-gdy_path = joinpath(@__DIR__,"..","..","..","resources","games")
+image_path = joinpath(@__DIR__,"..","..","Griddly","resources","images")
+shader_path = joinpath(@__DIR__,"..","..","Griddly","resources","shaders")
+gdy_path = joinpath(@__DIR__,"..","..","Griddly","resources","games")
 
 gdy_reader = Griddly.GDYReader(image_path,shader_path)
 grid = Griddly.load!(gdy_reader,joinpath(gdy_path,"Single-Player/Mini-Grid/minigrid-doggo.yaml"))
 
 println("Grid is loaded, go to create the game now")
 
-game = Griddly.create_game(grid,Griddly.SPRITES_2D)
+game = Griddly.create_game(grid,Griddly.SPRITE_2D)
 
 println("Game is created, we now register a player")
 
@@ -31,7 +31,7 @@ for l in 0:4
     Griddly.load_level!(grid,l)
     Griddly.reset!(game)
     observation = Griddly.observe(game)
-    println(convert(Array{Int8,3},Griddly.get_data(observation)))
+    println(convert(Array{Int,3},Griddly.get_data(observation)))
     for j in 1:200
         dir = rand(0:5)
 
@@ -40,7 +40,7 @@ for l in 0:4
         # player1_tiles = Griddly.observe(player1)
 
         observation = Griddly.observe(game)
-        println(convert(Array{Int8,3},Griddly.get_data(observation)))
+        observation = Griddly.get_data(observation)
         render(render_window,observation)
 
         frames += 1
@@ -52,3 +52,4 @@ for l in 0:4
             start = time_ns()
         end
     end
+end
