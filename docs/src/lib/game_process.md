@@ -1,4 +1,4 @@
-# Game Process
+# [Game Process](@id game_process)
 Game process object is what will make the connection between player(s) and the grid.
 It is also that object that will get your observer data.
 
@@ -12,10 +12,6 @@ Griddly.reset!
 Griddly.observe(::Griddly.GameProcess)
 ```
 ## More example
-```@contents
-Pages = [
-    "examples/minidroggo.md"
-    "examples/sokoban.md"
-    "examples/multiplayer.md"
-]
-```
+
+- [`MiniGridDoggo`](@ref minigrid_doggo)
+- [`MultiPlayerRTS`](@ref rts)

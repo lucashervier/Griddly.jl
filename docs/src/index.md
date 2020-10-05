@@ -16,22 +16,13 @@ Depth = 1
 
 ## Library Outline
 
-```@contents
-Pages = [
-    "lib/observer.md",
-    "lib/grid.md",
-    "lib/game_process.md",
-    "lib/player.md",
-    "lib/render_tool.md",
-]
-Depth=1
-```
+- [`Observer`](@ref observer_type)
+- [`Grid`](@ref grid)
+- [`GameProcess`](@ref game_process)
+- [`Player`](@ref player)
+- [`RenderTools`](@ref render_tool)
 
 ## Examples
 
-```@contents
-Pages = [
-    "examples/minigrid_doggo.md"
-    "examples/multiplayer.md"
-]
-```
+- [`MiniGridDoggo`](@ref minigrid_doggo)
+- [`MultiPlayerRTS`](@ref rts)

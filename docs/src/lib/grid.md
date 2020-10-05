@@ -1,4 +1,4 @@
-# Grid
+# [Grid](@id grid)
 The grid instance is the core of Griddly. Indeed, it is from the grid object that
 you load your games files: behaviors, objects, some levels of your game and so on.
 You will create a game from the grid. Especially, all your actions are executed

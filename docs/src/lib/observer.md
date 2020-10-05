@@ -1,4 +1,4 @@
-# Observer
+# [Observer](@id observer_type)
 
 You can define at present 5 ObserverType: NONE, SPRITE\_2D, BLOCK\_2D, VECTOR and ISOMETRIC.
 

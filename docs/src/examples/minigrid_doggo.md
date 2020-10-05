@@ -1,4 +1,4 @@
-# MiniGridDoggo
+# [MiniGridDoggo](@id minigrid_doggo)
 The best to get a hand on Griddly and its functionnality is through an example. We are going to have a raw
 example with the minigrid\_doggo game and then the same example with a Render Window. This one is really easy to
 use since there is only one action type:"move".

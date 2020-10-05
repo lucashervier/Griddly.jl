@@ -1,4 +1,4 @@
-# Render Tools
+# [Render Tools](@id render_tool)
 Documentation on the RenderTool provided with Griddly. The render tool is back-end with [__Makie__](http://makie.juliaplots.org/stable/)
 
 ## Simple Rendering on one Screen

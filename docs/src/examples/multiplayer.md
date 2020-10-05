@@ -1,4 +1,4 @@
-# Multi-Player RTS Game
+# [Multi-Player RTS Game](@id rts)
 The first example is a really simple one with only one player and one action.
 Here we are going to play at with [`GriddlyRTS`](https://github.com/Bam4d/Griddly/blob/develop/resources/games/RTS/GriddlyRTS.yaml) game:
 
