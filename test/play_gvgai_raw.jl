@@ -1,8 +1,8 @@
 using Griddly
 
-image_path = joinpath(@__DIR__,"..","..","Griddly","resources","images")
-shader_path = joinpath(@__DIR__,"..","..","Griddly","resources","shaders")
-gdy_path = joinpath(@__DIR__,"..","..","Griddly","resources","games")
+image_path = joinpath(@__DIR__,"..","..","..","resources","images")
+shader_path = joinpath(@__DIR__,"..","..","..","resources","shaders")
+gdy_path = joinpath(@__DIR__,"..","..","..","resources","games")
 
 gdy_reader = Griddly.GDYReader(image_path,shader_path)
 grid = Griddly.load!(gdy_reader,joinpath(gdy_path,"Single-Player/Mini-Grid/minigrid-doggo.yaml"))
