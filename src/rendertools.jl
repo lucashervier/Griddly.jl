@@ -63,31 +63,6 @@ function save_frame(observation,resolution::Tuple{Int64,Int64},file_name::String
 end
 
 """
-	save_frame(scene::SceneLike,file_name::String;file_path="julia/img/",format=".png")
-If you want to save a specific observation from a RenderWindow or a VideoRecorder:
-```jldoctests
-julia> using Griddly
-
-julia> render_window = RenderWindow(700,700)
-
-julia> save_frame(render_window.scene,"blank";file_path="expl/img",format=".jpeg")
-```
-Or from a VideoRecorder
-```jldoctests
-julia> using Griddly
-
-julia> video = VideoRecorder((700,700),"test_video";saving_path="videos/expl/"
-
-julia> io = start_video(video)
-
-julia> save_frame(video.scene,"blank";file_path="expl/img",format=".jpeg")
-```
-"""
-function save_frame(scene::SceneLike,file_name::String;file_path="julia/img/",format=".png")
-	Makie.save("$file_path$file_name$format",scene)
-end
-
-"""
 	VideoRecorder
 This Structure will help you to capture a video of your experiments. It will also
 render but if you are just looking to render observations then you should use a
@@ -279,4 +254,18 @@ function render_multiple(screen::MultipleScreen,observations;nice_render=false)
 	for i in 1:screen.nb_scene
     	pop!(screen.subscenes[i].plots)
 	end
+end
+
+"""
+	save_frames(observations,file_name::String;file_path="julia/img/",format=".png")
+If you want to save your observations on a MultipleScreen
+"""
+function save_frames(observations,file_name::String;file_path="julia/img/",format=".png")
+	screen = MultipleScreen(700,700;nb_scene=length(observations))
+	for i in 1:length(observations)
+		# observation is a 3d array with UInt8, we need to transform it into a rgb julia image
+		img = ImageCore.colorview(RGB{N0f8},observations[i])
+		image!(screen.subscenes[i],view(img, :, size(img)[2]:-1:1))
+	end
+	Makie.save("$file_path$file_name$format",screen.scene)
 end
