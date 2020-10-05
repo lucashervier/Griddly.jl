@@ -13,7 +13,7 @@ pages = [
             "Render Tools" => "lib/render_tool.md",
         ],
         "Examples" => Any[
-            "Minidroggo" => "examples/minidroggo.md",
+            "MiniGridDoggo" => "examples/minigrid_doggo.md",
             "Sokoban" => "examples/sokoban.md",
             "Multi Player" => "examples/multiplayer.md"
         ],

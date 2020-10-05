@@ -46,7 +46,7 @@ as follows:
 ```jldoctest
 julia> render_window = RenderWindow(700,700)
 
-julia> sprites = convert(Array{Int,3},Griddly.get_data(Griddly.observe(game))))
+julia> sprites = Griddly.get_data(Griddly.observe(game)))
 
 julia> render(render_window,sprites)
 
@@ -56,7 +56,7 @@ julia> for j in 1:200
        reward, done = Griddly.step_player!(player1,"move", [dir])
 
        sprites = Griddly.observe(game)
-       sprites = convert(Array{Int,3},Griddly.get_data(sprites))
+       sprites = Griddly.get_data(sprites)
        render(render_window,sprites)
        end
 ```
@@ -64,7 +64,7 @@ julia> for j in 1:200
 ## MakieScreenshot
 ```@docs
 save_frame(observation,resolution::Tuple{Int64,Int64},file_name::String;file_path="julia/img/",format=".png")
-save_frame(scene::SceneLike,file_name::String;file_path="julia/img/",format=".png")
+save_frames(observations,file_name::String;file_path="julia/img/",format=".png")
 ```
 
 ## VideoRecorder
@@ -90,7 +90,7 @@ julia> video = VideoRecorder((700,700),"test_video";saving_path="videos/")
 
 julia> io = start_video(video)
 
-julia> sprites = convert(Array{Int,3},Griddly.get_data(Griddly.observe(game))))
+julia> sprites = Griddly.get_data(Griddly.observe(game)))
 
 julia> add_frame!(video,io,sprites;fast_display=true)
 
@@ -100,7 +100,7 @@ julia> for j in 1:200
        reward, done = Griddly.step_player!(player1,"move", [dir])
 
        sprites = Griddly.observe(game)
-       sprites = convert(Array{Int,3},Griddly.get_data(sprites))
+       sprites = Griddly.get_data(sprites)
        add_frame!(video,io,sprites;fast_display=true)
        end
 
@@ -121,9 +121,9 @@ example of how to render both game sprite observations and player block observat
 ```jldoctests
 julia> multiple_window = MultipleScreen(700,700;nb_scene=2)
 
-julia> sprites = convert(Array{Int,3},Griddly.get_data(Griddly.observe(game))))
+julia> sprites = Griddly.get_data(Griddly.observe(game)))
 
-julia> player_tiles = convert(Array{Int,3},Griddly.get_data(Griddly.observe(player1))))
+julia> player_tiles = Griddly.get_data(Griddly.observe(player1)))
 
 julia> render_multiple(multiple_window,[sprites,player_tiles];nice_render=true)
 
@@ -133,10 +133,10 @@ julia> for j in 1:200
        reward, done = Griddly.step_player!(player1,"move", [dir])
 
        sprites = Griddly.observe(game)
-       sprites = convert(Array{Int,3},Griddly.get_data(sprites))
+       sprites = Griddly.get_data(sprites)
 
        player_tiles = Griddly.observe(player1)
-       player_tiles = convert(Array{Int,3},Griddly.get_data(player_tiles))
+       player_tiles = Griddly.get_data(player_tiles)
        render_multiple(multiple_window,[sprites,player_tiles];nice_render=true)
        end
 ```
