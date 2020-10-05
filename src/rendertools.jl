@@ -113,7 +113,7 @@ Add the observation as a frame for our video. The nice display option set to tru
 while recording. The fast display option set to true (both cannot be set to true or this one will be ignore) will render
 faster but you will see a loading wheel (but not in the final video)
 """
-function add_frame!(video::VideoRecorder,io::VideoStream,observation;speed=1e-4,nice_display=false,fast_display=false)
+function add_frame!(video::VideoRecorder,io::VideoStream,observation;speed=1e-4,nice_display=false,fast_display=true)
 	# observation is a 3d array with UInt8, we need to transform it into a rgb julia image
 	img = ImageCore.colorview(RGB{N0f8},observation)
 

@@ -15,6 +15,6 @@ module Griddly
 	using ImageCore
 
 	include("rendertools.jl")
-	export RenderWindow, VideoRecorder, init, render, save_frame, start_video, add_frame!, save_video, MultipleScreen, render_multiple
+	export RenderWindow, VideoRecorder, init, render, save_frame, start_video, add_frame!, save_video, MultipleScreen, render_multiple, save_frames
 
 end
