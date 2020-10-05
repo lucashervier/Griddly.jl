@@ -14,7 +14,6 @@ pages = [
         ],
         "Examples" => Any[
             "MiniGridDoggo" => "examples/minigrid_doggo.md",
-            "Sokoban" => "examples/sokoban.md",
             "Multi Player" => "examples/multiplayer.md"
         ],
     ])

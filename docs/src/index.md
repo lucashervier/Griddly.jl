@@ -32,7 +32,6 @@ Depth=1
 ```@contents
 Pages = [
     "examples/minigrid_doggo.md"
-    "examples/sokoban.md"
     "examples/multiplayer.md"
 ]
 ```
