@@ -34,19 +34,7 @@ sudo apt install vulkan-sdk
 
 #### MacOS
 
-1. Install xcode CLI tools
-```
-xcode-select --install
-```
-2. Install Brew 
-```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-```
-3. Install cmake
-```
-brew install cmake
-```
-4. Install [Vulkan](https://vulkan.lunarg.com/sdk/home) 
+WIP
 
 ### Build Julia Locally 
 
